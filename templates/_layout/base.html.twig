@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UI Toolbox Documentation{% endblock %}</title>
+
+    {{ importmap('ui-toolbox-docs') }}
+
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="min-h-screen bg-base-100 flex">
+    <aside class="w-64 h-screen bg-base-200 p-4 overflow-y-auto flex flex-col">
+        <nav class="menu">
+            <ul class="menu bg-base-200 w-full rounded-box space-y-2">
+                <li>
+                    <a href="{{ path('ui_toolbox_dashboard') }}" class="block hover:underline px-2">
+                        🏠 Accueil
+                    </a>
+                </li>
+                {% for category, components in getUiToolboxComponents() %}
+                    <div class="mt-4">
+                        <span class="block text-sm font-semibold text-gray-500 uppercase tracking-wide cursor-default select-none px-2">{{ category|capitalize }}</span>
+                        <ul class="pl-2 space-y-1">
+                            {% for component in components %}
+                                <li>
+                                    <a href="{{ path('ui_toolbox_component', { slug: component.slug }) }}" class="block hover:underline">
+                                        {{ component.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-6 overflow-y-auto">
+        {% block body %}{% endblock %}
+    </main>
+</body>
+</html>

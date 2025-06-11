@@ -1,0 +1,102 @@
+{% extends '@UIToolboxDoc/_layout/base.html.twig' %}
+
+{% block title %}UI Toolbox Documentation{% endblock %}
+
+{% block body %}
+    <section class="px-8 py-10">
+        <div class="max-w-5xl mx-auto">
+            {% if component.doc is not null %}
+                <h1 class="text-4xl font-bold text-primary mb-2">{{ component.doc.title ?? component.name }}</h1>
+                {% if component.doc.description %}
+                    <p class="text-lg text-gray-600 mb-6">{{ component.doc.description }}</p>
+                {% endif %}
+            {% else %}
+                <h1 class="text-4xl font-bold text-primary mb-2">{{ component.name }}</h1>
+                <p class="text-lg text-gray-600 mb-6">Aucune documentation chargée (attribut UIComponentDoc manquant ?)</p>
+            {% endif %}
+
+            {{ block('properties') }}
+            {{ block('examples') }}
+        </div>
+    </section>
+{% endblock %}
+
+{% block properties %}
+    <h2 class="text-2xl font-semibold mt-10 mb-4">Properties</h2>
+    {% if component.props %}
+        <div class="overflow-x-auto">
+            <table class="table w-full">
+                <thead>
+                <tr>
+                    <th class="text-left">Name</th>
+                    <th class="text-left">Description</th>
+                    <th class="text-left">Accepted values</th>
+                    <th class="text-left">Default value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for prop in component.props %}
+                    <tr>
+                        <td class="font-mono">{{ prop.name }}</td>
+                        <td>{{ prop.description }}</td>
+                        <td>
+                            {% set acceptedValues = prop.acceptedValues ?? null %}
+                            {% if acceptedValues is iterable %}
+                                <code class="whitespace-nowrap">{{ acceptedValues|filter(v => v is not null)|join(', ') }}</code>
+                            {% elseif acceptedValues %}
+                                <code class="whitespace-nowrap">{{ acceptedValues }}</code>
+                            {% else %}
+                                <span class="text-gray-400">–</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% set defaultValue = prop.default ?? null %}
+                            {% if defaultValue is not null %}
+                                <code class="whitespace-nowrap">{{ defaultValue }}</code>
+                            {% else %}
+                                <span class="text-gray-400">–</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p><em>No properties defined.</em></p>
+    {% endif %}
+{% endblock %}
+
+{% block examples %}
+    <h2 class="text-2xl font-semibold mt-10 mb-4">Examples</h2>
+    {% if component.examples %}
+        <div class="space-y-10">
+            {% for example in component.examples %}
+                <div>
+                    <h3 class="text-xl font-bold mb-1 flex items-center gap-2"
+                        id="{{ example.title|lower|replace({' ': '-'}) }}">
+                        <a href="#{{ example.title|lower|replace({' ': '-'}) }}"
+                           class="transition-opacity text-sm text-gray-400 hover:text-gray-600 hover:opacity-100 opacity-50">#</a>
+                        <span>{{ example.title }}</span>
+                    </h3>
+                    {% if example.description %}
+                        <p class="text-sm text-gray-500 mb-2">{{ example.description }}</p>
+                    {% endif %}
+                    <div class="tabs tabs-lift mt-2">
+                        <input type="radio" name="tab-{{ loop.index }}" class="tab" aria-label="Preview" checked/>
+                        <div class="tab-content border-base-300 bg-base-100 p-4">
+                            {{ example.code|raw }}
+                        </div>
+
+                        <input type="radio" name="tab-{{ loop.index }}" class="tab" aria-label="Code"/>
+                        <div class="tab-content border-base-300 bg-base-100 p-4">
+                            <pre class="bg-base-200 p-4 rounded text-sm overflow-auto"><code>{{ example.html|e }}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p><em>No examples provided.</em></p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    AppoloDev\UIToolboxDocBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+
+

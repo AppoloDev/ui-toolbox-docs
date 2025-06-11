@@ -1,0 +1,5 @@
+ui_toolbox:
+    resource:
+        path: ../../src/Controller/
+        namespace: AppoloDev\UIToolboxDocBundle\Controller
+    type: attribute

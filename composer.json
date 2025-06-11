@@ -1,0 +1,52 @@
+{
+    "name": "appolodev/ui-toolbox-docs",
+    "description": "Documentation for Toolbox UI",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fredxd",
+            "email": "frederic@appolo.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.3",
+        "twig/twig": "^3.0",
+        "symfony/ux-twig-component": "^2.9",
+        "symfony/twig-bundle": "^7.2",
+        "symfony/ux-icons": "^2.18",
+        "symfonycasts/tailwind-bundle": "^0.10",
+        "symfony/asset-mapper": "^7.3",
+        "symfony/console": "^7.3",
+        "appolodev/ui-toolbox": "dev-main"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.22",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AppoloDev\\UIToolboxDocBundle\\": "src/"
+        }
+    },
+    "extra": {
+        "symfony": {
+            "bundle": "AppoloDev\\UIToolboxDocBundle\\UIToolboxDocBundle"
+        }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "ui-toolbox:importmap:merge --path=vendor/appolodev/ui-toolbox-docs/config/importmap.php --project=importmap.php": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "phpstan": "phpstan analyse -c phpstan.neon.dist",
+        "fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --config=.php-cs-fixer.dist.php"
+    }
+}
