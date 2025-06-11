@@ -62,8 +62,6 @@ class ComponentDocumentationRegistry
                 'namespace_match' => $ns,
                 'class_match' => $class,
             ]);
-
-            return '';
         }
 
         $className = $ns[1].'\\'.$class[1];
