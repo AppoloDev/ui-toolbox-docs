@@ -85,12 +85,13 @@
                     <div class="tabs tabs-lift mt-2">
                         <input type="radio" name="tab-{{ loop.index }}" class="tab" aria-label="Preview" checked/>
                         <div class="tab-content border-base-300 bg-base-100 p-4">
-                            {{ example.code|raw }}
+                            {{ include(example.templateName) }}
                         </div>
 
                         <input type="radio" name="tab-{{ loop.index }}" class="tab" aria-label="Code"/>
                         <div class="tab-content border-base-300 bg-base-100 p-4">
-                            <pre class="bg-base-200 p-4 rounded text-sm overflow-auto"><code>{{ example.html|e }}</code></pre>
+                            {% set templateSource = source(example.templateName) %}
+                            <pre class="bg-base-200 p-4 rounded text-sm overflow-auto"><code>{{ templateSource|e }}</code></pre>
                         </div>
                     </div>
                 </div>
