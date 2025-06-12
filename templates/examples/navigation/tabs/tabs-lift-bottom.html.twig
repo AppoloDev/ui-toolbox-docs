@@ -1,0 +1,10 @@
+{% set id = 'tabs-'~random() %}
+
+<twig:tabs style="lift" placement="bottom" class="w-full">
+    <twig:tabItemHeader id="{{ id }}">Tab 1</twig:tabItemHeader>
+    <twig:tabItemContent>Tab content 1</twig:tabItemContent>
+    <twig:tabItemHeader id="{{ id }}" active="true">Tab 2</twig:tabItemHeader>
+    <twig:tabItemContent>Tab content 2</twig:tabItemContent>
+    <twig:tabItemHeader id="{{ id }}">Tab 3</twig:tabItemHeader>
+    <twig:tabItemContent>Tab content 3</twig:tabItemContent>
+</twig:tabs>
