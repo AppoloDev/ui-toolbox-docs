@@ -27,7 +27,12 @@ class ComponentDocumentationRegistry
                 dd('Classe introuvable ou non définie correctement dans le fichier : '.$file->getRealPath(), $className);
             }
 
-            $name = (new ReflectionClass($className))->getShortName();
+            $refClass = new ReflectionClass($className);
+            if (empty($refClass->getAttributes(UIComponentDoc::class))) {
+                continue;
+            }
+
+            $name = $refClass->getShortName();
             $parts = \explode('\\', $className);
             $category = $parts[\array_search('UI', $parts, true) + 1] ?? 'Uncategorized';
 
@@ -39,6 +44,10 @@ class ComponentDocumentationRegistry
                 'slug' => \strtolower($name),
             ], $this->extractComponentMetadata($className));
         }
+
+        \usort($this->components, function ($a, $b) {
+            return [$a['category'], $a['name']] <=> [$b['category'], $b['name']];
+        });
     }
 
     public function all(): array
