@@ -1,18 +1,32 @@
 <twig:menu direction="horizontal" class="bg-base-200 rounded-box">
     <li>
-        <a class="tooltip tooltip-top" data-tip="Search">
-            <twig:ux:icon name="iconoir:search" class="h-5 w-5" />
-        </a>
+        <twig:tooltip>
+            <twig:block name="tooltip_content">
+                Search
+            </twig:block>
+            <a data-tip="Add page">
+                <twig:ux:icon name="iconoir:search" class="h-5 w-5" />
+            </a>
+        </twig:tooltip>
     </li>
     <li>
-        <a class="tooltip tooltip-top" data-tip="Heart">
-            <twig:ux:icon name="iconoir:heart" class="h-5 w-5" />
-        </a>
+        <twig:tooltip>
+            <twig:block name="tooltip_content">
+                Heart
+            </twig:block>
+            <a data-tip="Add page">
+                <twig:ux:icon name="iconoir:heart" class="h-5 w-5" />
+            </a>
+        </twig:tooltip>
     </li>
     <li>
-        {# TODO: component tooltip #}
-        <a class="tooltip tooltip-top" data-tip="Add page">
-            <twig:ux:icon name="iconoir:add-page" class="h-5 w-5" />
-        </a>
+        <twig:tooltip>
+            <twig:block name="tooltip_content">
+                Add page
+            </twig:block>
+            <a data-tip="Add page">
+                <twig:ux:icon name="iconoir:add-page" class="h-5 w-5" />
+            </a>
+        </twig:tooltip>
     </li>
 </twig:menu>
