@@ -6,14 +6,27 @@
     <section class="px-8 py-10">
         <div class="max-w-5xl mx-auto">
             {% if component.doc is not null %}
-                <h1 class="text-4xl font-bold text-primary mb-2">{{ component.doc.title ?? component.name }}</h1>
+                <div class="flex justify-between items-center">
+                    <h1 class="text-4xl font-bold text-primary mb-2">{{ component.doc.title ?? component.name }}</h1>
+                    {% if component.doc.url is not null %}
+                        <a href="{{ component.doc.url }}" target="_blank">
+                            <div class="h-6 w-6">
+                                {{ source('@UIToolboxDoc/_icons/daisyui.svg') }}
+                            </div>
+                        </a>
+                    {% endif %}
+                </div>
+
                 {% if component.doc.description %}
                     <p class="text-lg text-gray-600 mb-6">{{ component.doc.description }}</p>
                 {% endif %}
             {% else %}
                 <h1 class="text-4xl font-bold text-primary mb-2">{{ component.name }}</h1>
-                <p class="text-lg text-gray-600 mb-6">Aucune documentation chargée (attribut UIComponentDoc manquant ?)</p>
+                <p class="text-lg text-gray-600 mb-6">Aucune documentation chargée (attribut UIComponentDoc manquant
+                    ?)</p>
             {% endif %}
+
+
 
             {{ block('properties') }}
             {{ block('examples') }}
@@ -42,7 +55,8 @@
                         <td>
                             {% set acceptedValues = prop.acceptedValues ?? null %}
                             {% if acceptedValues is iterable %}
-                                <code class="whitespace-nowrap">{{ acceptedValues|filter(v => v is not null)|join(', ') }}</code>
+                                <code
+                                    class="whitespace-nowrap">{{ acceptedValues|filter(v => v is not null)|join(', ') }}</code>
                             {% elseif acceptedValues %}
                                 <code class="whitespace-nowrap">{{ acceptedValues }}</code>
                             {% else %}
@@ -85,7 +99,8 @@
                     <div class="tabs tabs-lift mt-2">
                         <input type="radio" name="tab-{{ loop.index }}" class="tab" aria-label="Preview" checked/>
                         <div class="tab-content border-base-300 bg-base-100 p-4">
-                            <div class="bg-base-100 relative flex min-h-[6rem] w-full flex-wrap items-center justify-center gap-2 overflow-x-hidden bg-cover bg-top p-4 xl:py-10">
+                            <div
+                                class="bg-base-100 relative flex min-h-[6rem] w-full flex-wrap items-center justify-center gap-2 overflow-x-hidden bg-cover bg-top p-4 xl:py-10">
                                 {{ include(example.templateName) }}
                             </div>
                         </div>
@@ -93,7 +108,8 @@
                         <input type="radio" name="tab-{{ loop.index }}" class="tab" aria-label="Code"/>
                         <div class="tab-content border-base-300 bg-base-100 p-4">
                             {% set templateSource = source(example.templateName) %}
-                            <pre class="bg-base-200 p-4 rounded text-sm overflow-auto"><code>{{ templateSource|e }}</code></pre>
+                            <pre
+                                class="bg-base-200 p-4 rounded text-sm overflow-auto"><code>{{ templateSource|e }}</code></pre>
                         </div>
                     </div>
                 </div>
