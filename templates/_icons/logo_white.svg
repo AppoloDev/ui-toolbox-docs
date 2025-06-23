@@ -1,0 +1,15 @@
+<svg width="280" height="128" viewBox="0 0 280 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Logo -->
+    <rect x="16" y="40" width="96" height="64" rx="8" fill="#7861ff"/>
+    <rect x="16" y="40" width="96" height="64" rx="8" stroke="#ffffff" stroke-width="4"/>
+    <rect x="44" y="24" width="40" height="20" rx="4" fill="#ffffff"/>
+    <circle cx="32" cy="56" r="5" fill="#02074e"/>
+    <rect x="48" y="52" width="40" height="8" rx="2" fill="#02074e"/>
+    <rect x="32" y="72" width="64" height="8" rx="2" fill="#02074e"/>
+    <line x1="32" y1="88" x2="96" y2="88" stroke="#02074e" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="64" cy="88" r="6" fill="#ffffff" stroke="#02074e" stroke-width="2"/>
+
+    <!-- Texte à droite -->
+    <text x="130" y="70" font-family="Segoe UI, sans-serif" font-size="28" fill="#ffffff" font-weight="bold">UI</text>
+    <text x="130" y="100" font-family="Segoe UI, sans-serif" font-size="28" fill="#ffffff" font-weight="bold">Toolbox</text>
+</svg>

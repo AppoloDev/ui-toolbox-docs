@@ -1,0 +1,5 @@
+<svg width="280" height="128" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="40" width="96" height="64" rx="8" fill="#7861ff"/><rect x="16" y="40" width="96" height="64" rx="8" stroke="#02074e" stroke-width="4"/><rect x="44" y="24" width="40" height="20" rx="4" fill="#02074e"/><circle cx="32" cy="56" r="5" fill="#fff"/><rect x="48" y="52" width="40" height="8" rx="2" fill="#fff"/><rect x="32" y="72" width="64" height="8" rx="2" fill="#fff"/><path stroke="#fff" stroke-width="4" stroke-linecap="round" d="M32 88h64"/><circle cx="64" cy="88" r="6" fill="#02074e" stroke="#fff" stroke-width="2"/><text x="130" y="70" font-family="Segoe UI, sans-serif" font-size="28" fill="#02074e" font-weight="bold">
+    UI
+</text><text x="130" y="100" font-family="Segoe UI, sans-serif" font-size="28" fill="#02074e" font-weight="bold">
+    Toolbox
+</text></svg>
