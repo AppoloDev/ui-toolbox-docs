@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}UI Toolbox Documentation{% endblock %}</title>
 
-    {{ importmap('ui-toolbox-docs') }}
-
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        {{ vite_entry_link_tags('uitoolbox') }}
+        {{ vite_entry_link_tags('uitoolboxdocs') }}
+    {% endblock %}
 </head>
 <body class="h-full bg-base-100">
     <div class="flex flex-col md:flex-row h-full">
         <aside id="sidebar" class="w-full md:w-64 h-full bg-primary text-primary-content p-4 overflow-y-auto
        md:sticky md:top-0 md:block md:relative
        fixed inset-0 z-50 md:z-auto md:static
-       hidden transition-all duration-300">
-            <div class="flex justify-end md:hidden mb-2">
-                <button class="btn btn-sm" onclick="toggleSidebar()">
-                    ✕ Fermer
-                </button>
-            </div>
+        transition-all duration-300">
             <div class="mb-6 px-2">
                 <a href="{{ path('ui_toolbox_dashboard') }}" class="block">
                     <div class="w-full max-w-[160px] overflow-hidden">
@@ -56,21 +52,12 @@
         </aside>
 
         <main class="flex-1 p-6 overflow-y-auto">
-            <button id="menuToggle" class="md:hidden mb-4 btn btn-sm" onclick="toggleSidebar()">
-                ☰ Menu
-            </button>
             {% block body %}{% endblock %}
         </main>
     </div>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const toggleBtn = document.getElementById('menuToggle');
-            const isOpen = !sidebar.classList.contains('hidden');
-
-            sidebar.classList.toggle('hidden');
-            toggleBtn.classList.toggle('hidden', !isOpen);
-        }
-    </script>
+    {% block javascripts %}
+        {{ vite_entry_script_tags('uitoolbox') }}
+        {{ vite_entry_script_tags('uitoolboxdocs') }}
+    {% endblock %}
 </body>
 </html>

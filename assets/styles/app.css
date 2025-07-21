@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@plugin "../../../../assets/vendor/daisyui/daisyui.index.js";
+@plugin "daisyui";
 
 @source "../../templates/**/*.twig";
 
